@@ -22,9 +22,11 @@ app.use(
   }),
 );
 
+
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/jobs", require("./routes/jobRoutes"));
 app.use("/api/stats", require("./routes/statsRoutes"));
+app.use("/api/ai", require("./routes/aiRoutes"));
 
 app.get("/", (req, res) => {
   res.send("API Running");

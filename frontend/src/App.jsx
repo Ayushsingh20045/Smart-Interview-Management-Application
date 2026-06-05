@@ -5,7 +5,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Jobs from "./pages/Jobs";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import { NavLink } from "react-router-dom";
+
 
 
 import Kanban from "./pages/Kanban";
@@ -47,7 +47,14 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/ai" element={<AIAssistant />} />
+        <Route
+          path="/ai"
+          element={
+            <ProtectedRoute>
+              <AIAssistant />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
