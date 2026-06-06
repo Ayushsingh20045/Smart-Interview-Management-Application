@@ -11,12 +11,25 @@ connectDB();
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://smart-interview-management-applicat.vercel.app",
+  "https://smart-interview-management-application-mh9c6az0a.vercel.app",
+];
+
 app.use(
   cors({
-    origin: [process.env.CLIENT_URL, "http://localhost:5173"],
+    origin: allowedOrigins,
     credentials: true,
   }),
 );
+
+// app.use(
+//   cors({
+//     origin: [process.env.CLIENT_URL, "http://localhost:5173"],
+//     credentials: true,
+//   }),
+// );
 
 
 app.set("trust proxy", 1);
