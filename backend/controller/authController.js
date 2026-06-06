@@ -93,13 +93,26 @@ exports.login = async (req, res) => {
 
 // LOGOUT
 
+// exports.logout = async (req, res) => {
+//   res.clearCookie("token");
+
+//   res.status(200).json({
+//     message: "Logout Successful",
+//   });
+// };
+
 exports.logout = async (req, res) => {
-  res.clearCookie("token");
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  });
 
   res.status(200).json({
     message: "Logout Successful",
   });
 };
+
 
 
 //Get Me
