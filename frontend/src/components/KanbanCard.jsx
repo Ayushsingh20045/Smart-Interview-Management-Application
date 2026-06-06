@@ -2,16 +2,25 @@
 
 // import { CSS } from "@dnd-kit/utilities";
 
-// const KanbanCard = ({ job }) => {
-//   const { attributes, listeners, setNodeRef, transform, transition } =
-//     useSortable({
-//       id: job._id,
-//     });
-// const style = {
-//   transform: CSS.Transform.toString(transform),
+// import { Building2, MapPin, IndianRupee, GripVertical } from "lucide-react";
 
-//   transition: transition || "transform 150ms ease",
-// };
+// const KanbanCard = ({ job }) => {
+//   const {
+//     attributes,
+//     listeners,
+//     setNodeRef,
+//     transform,
+//     transition,
+//     isDragging,
+//   } = useSortable({
+//     id: job._id,
+//   });
+
+//   const style = {
+//     transform: CSS.Transform.toString(transform),
+
+//     transition: transition || "transform 200ms ease",
+//   };
 
 //   return (
 //     <div
@@ -19,22 +28,142 @@
 //       style={style}
 //       {...attributes}
 //       {...listeners}
-//       className="
-//      bg-slate-800
-// p-4
-// rounded-2xl
-// mb-3
-// cursor-grab
-// border
-// border-slate-700
-// hover:border-indigo-500
-// hover:scale-[1.02]
-// transition-all
-//       "
-//     >
-//       <h3 className="font-semibold">{job.company}</h3>
+//       className={`
+//       relative
+//       bg-[#0f172a]
+//       border
+//       rounded-2xl
+//       p-4
+//       cursor-grab
+//       transition-all
+//       duration-200
+//       select-none
 
-//       <p className="text-slate-400 text-sm mt-1">{job.role}</p>
+//       ${
+//         isDragging
+//           ? `
+//           border-[#6366f1]
+//           shadow-xl
+//           shadow-indigo-500/20
+//           rotate-1
+//           scale-105
+//           z-50
+//           `
+//           : `
+//           border-slate-700/50
+//           hover:border-[#6366f1]/50
+//           hover:-translate-y-1
+//           `
+//       }
+//     `}
+//     >
+//       {/* Drag Handle */}
+
+//       <div
+//         className="
+//         absolute
+//         top-3
+//         right-3
+//         text-slate-500
+//         "
+//       >
+//         <GripVertical size={16} />
+//       </div>
+
+//       {/* Company */}
+
+//       <div className="mb-3">
+//         <h3
+//           className="
+//           text-white
+//           font-semibold
+//           text-lg
+//           pr-6
+//           "
+//         >
+//           {job.company}
+//         </h3>
+
+//         <p
+//           className="
+//           text-slate-400
+//           text-sm
+//           mt-1
+//           "
+//         >
+//           {job.role}
+//         </p>
+//       </div>
+
+//       {/* Meta */}
+
+//       <div
+//         className="
+//         space-y-2
+//         "
+//       >
+//         {job.location && (
+//           <div
+//             className="
+//             flex
+//             items-center
+//             gap-2
+//             text-slate-400
+//             text-sm
+//             "
+//           >
+//             <MapPin size={14} />
+
+//             <span>{job.location}</span>
+//           </div>
+//         )}
+
+//         {job.salary && (
+//           <div
+//             className="
+//             flex
+//             items-center
+//             gap-2
+//             text-slate-400
+//             text-sm
+//             "
+//           >
+//             <IndianRupee size={14} />
+
+//             <span>{job.salary}</span>
+//           </div>
+//         )}
+//       </div>
+
+//       {/* Footer */}
+
+//       <div
+//         className="
+//         mt-4
+//         pt-3
+//         border-t
+//         border-slate-700/50
+//         flex
+//         items-center
+//         gap-2
+//         "
+//       >
+//         <Building2
+//           size={14}
+//           className="
+//           text-[#818cf8]
+//           "
+//         />
+
+//         <span
+//           className="
+//           text-xs
+//           text-slate-500
+//           "
+//         >
+//           Application
+//         </span>
+//       </div>
 //     </div>
 //   );
 // };
@@ -42,10 +171,8 @@
 // export default KanbanCard;
 
 import { useSortable } from "@dnd-kit/sortable";
-
 import { CSS } from "@dnd-kit/utilities";
-
-import { Building2, MapPin, IndianRupee, GripVertical } from "lucide-react";
+import { Building2, MapPin, IndianRupee } from "lucide-react";
 
 const KanbanCard = ({ job }) => {
   const {
@@ -61,8 +188,15 @@ const KanbanCard = ({ job }) => {
 
   const style = {
     transform: CSS.Transform.toString(transform),
+    transition: transition || "transform 150ms ease",
+    opacity: isDragging ? 0.5 : 1,
+  };
 
-    transition: transition || "transform 200ms ease",
+  const statusColors = {
+    Applied: "bg-blue-500/15 text-blue-400 border-blue-500/20",
+    Interview: "bg-yellow-500/15 text-yellow-400 border-yellow-500/20",
+    Offer: "bg-green-500/15 text-green-400 border-green-500/20",
+    Rejected: "bg-red-500/15 text-red-400 border-red-500/20",
   };
 
   return (
@@ -71,141 +205,92 @@ const KanbanCard = ({ job }) => {
       style={style}
       {...attributes}
       {...listeners}
-      className={`
-      relative
-      bg-[#0f172a]
-      border
-      rounded-2xl
-      p-4
-      cursor-grab
-      transition-all
-      duration-200
+      className="
+      touch-none
       select-none
+      cursor-grab
+      active:cursor-grabbing
 
-      ${
-        isDragging
-          ? `
-          border-[#6366f1]
-          shadow-xl
-          shadow-indigo-500/20
-          rotate-1
-          scale-105
-          z-50
-          `
-          : `
-          border-slate-700/50
-          hover:border-[#6366f1]/50
-          hover:-translate-y-1
-          `
-      }
-    `}
+      bg-[#1e293b]
+      border
+      border-slate-700/70
+      rounded-3xl
+      p-4
+
+      hover:border-[#6366f1]
+      hover:shadow-lg
+      hover:shadow-indigo-500/10
+
+      transition-all
+      duration-300
+      "
     >
-      {/* Drag Handle */}
+      {/* Header */}
 
-      <div
-        className="
-        absolute
-        top-3
-        right-3
-        text-slate-500
-        "
-      >
-        <GripVertical size={16} />
-      </div>
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex-1">
+          <h3 className="font-bold text-white text-base leading-tight">
+            {job.role}
+          </h3>
 
-      {/* Company */}
+          <div className="flex items-center gap-2 mt-2 text-slate-400 text-sm">
+            <Building2 size={14} />
+            <span>{job.company}</span>
+          </div>
+        </div>
 
-      <div className="mb-3">
-        <h3
+        <div
           className="
-          text-white
-          font-semibold
+          h-10
+          w-10
+          rounded-xl
+          bg-[#6366f1]/15
+          flex
+          items-center
+          justify-center
           text-lg
-          pr-6
           "
         >
-          {job.company}
-        </h3>
-
-        <p
-          className="
-          text-slate-400
-          text-sm
-          mt-1
-          "
-        >
-          {job.role}
-        </p>
+          💼
+        </div>
       </div>
 
-      {/* Meta */}
+      {/* Location */}
 
-      <div
-        className="
-        space-y-2
-        "
-      >
-        {job.location && (
-          <div
-            className="
-            flex
-            items-center
-            gap-2
-            text-slate-400
-            text-sm
-            "
-          >
-            <MapPin size={14} />
+      {job.location && (
+        <div className="flex items-center gap-2 mt-4 text-slate-400 text-sm">
+          <MapPin size={14} />
+          <span>{job.location}</span>
+        </div>
+      )}
 
-            <span>{job.location}</span>
-          </div>
-        )}
+      {/* Salary */}
 
-        {job.salary && (
-          <div
-            className="
-            flex
-            items-center
-            gap-2
-            text-slate-400
-            text-sm
-            "
-          >
-            <IndianRupee size={14} />
-
-            <span>{job.salary}</span>
-          </div>
-        )}
-      </div>
+      {job.salary && (
+        <div className="flex items-center gap-2 mt-2 text-slate-400 text-sm">
+          <IndianRupee size={14} />
+          <span>{job.salary}</span>
+        </div>
+      )}
 
       {/* Footer */}
 
-      <div
-        className="
-        mt-4
-        pt-3
-        border-t
-        border-slate-700/50
-        flex
-        items-center
-        gap-2
-        "
-      >
-        <Building2
-          size={14}
-          className="
-          text-[#818cf8]
-          "
-        />
-
+      <div className="mt-5 flex items-center justify-between">
         <span
-          className="
+          className={`
+          px-3
+          py-1.5
+          rounded-full
           text-xs
-          text-slate-500
-          "
+          font-medium
+          border
+          ${statusColors[job.status]}
+          `}
         >
-          Application
+          {job.status}
         </span>
+
+        <span className="text-xs text-slate-500">Drag to move →</span>
       </div>
     </div>
   );
