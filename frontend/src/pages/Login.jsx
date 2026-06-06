@@ -129,6 +129,7 @@ const Login = () => {
           <h1
             className="
             text-5xl
+            text-white
             font-bold
             leading-tight
             "
