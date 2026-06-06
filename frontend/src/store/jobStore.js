@@ -44,7 +44,30 @@ const useJobStore = create((set) => ({
     }
   },
 
+  // updateJob: async (id, updatedData) => {
+  //   set((state) => ({
+  //     jobs: state.jobs.map((job) =>
+  //       job._id === id
+  //         ? {
+  //             ...job,
+  //             ...updatedData,
+  //           }
+  //         : job,
+  //     ),
+  //   }));
+
+  //   try {
+  //     await jobService.updateJob(id, updatedData);
+
+  //     useStatsStore.getState().fetchStats();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // },
+
   updateJob: async (id, updatedData) => {
+    const previousJobs = useJobStore.getState().jobs;
+
     set((state) => ({
       jobs: state.jobs.map((job) =>
         job._id === id
@@ -57,11 +80,19 @@ const useJobStore = create((set) => ({
     }));
 
     try {
-      await jobService.updateJob(id, updatedData);
+      const updatedJob = await jobService.updateJob(id, updatedData);
+
+      set((state) => ({
+        jobs: state.jobs.map((job) => (job._id === id ? updatedJob : job)),
+      }));
 
       useStatsStore.getState().fetchStats();
     } catch (error) {
       console.log(error);
+
+      set({
+        jobs: previousJobs,
+      });
     }
   },
 }));
