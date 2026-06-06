@@ -10,20 +10,7 @@ const generateQuestions = async (company, role, level) => {
       model: "gemini-2.5-flash",
     });
 
-    //     const prompt = `
-    // Generate interview questions.
-
-    // Company: ${company}
-    // Role: ${role}
-    // Experience: ${level}
-
-    // Give:
-    // 1. Technical Questions
-    // 2. HR Questions
-    // 3. Behavioral Questions
-
-    // Format in markdown.
-    // `;
+   
 
     const prompt = `
 Return ONLY valid JSON.

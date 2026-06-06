@@ -91,15 +91,7 @@ exports.login = async (req, res) => {
   }
 };
 
-// LOGOUT
-
-// exports.logout = async (req, res) => {
-//   res.clearCookie("token");
-
-//   res.status(200).json({
-//     message: "Logout Successful",
-//   });
-// };
+//Logout
 
 exports.logout = async (req, res) => {
   res.clearCookie("token", {
