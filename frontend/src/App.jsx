@@ -6,13 +6,20 @@ import Dashboard from "./pages/Dashboard";
 import Jobs from "./pages/Jobs";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
-
+import useAuthStore from "./store/authStore";
 
 import Kanban from "./pages/Kanban";
 import Analytics from "./pages/Analytics";
 import AIAssistant from "./pages/AIAssistant";
+import { useEffect } from "react";
 
 function App() {
+   const checkAuth = useAuthStore((state) => state.checkAuth);
+
+   useEffect(() => {
+     checkAuth(); 
+   }, []);
+
   return (
     <BrowserRouter>
       <Routes>
