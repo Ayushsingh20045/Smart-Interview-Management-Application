@@ -42,7 +42,7 @@ import {
   Legend,
 } from "recharts";
 
-const COLORS = ["#6366f1", "#22c55e", "#f59e0b", "#ef4444"];
+const COLORS = ["#6366f1", "#f59e0b" ,"#22c55e", "#ef4444"];
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {

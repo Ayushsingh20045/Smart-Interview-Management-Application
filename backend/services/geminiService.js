@@ -10,22 +10,22 @@ const generateQuestions = async (company, role, level) => {
       model: "gemini-2.5-flash",
     });
 
-//     const prompt = `
-// Generate interview questions.
+    //     const prompt = `
+    // Generate interview questions.
 
-// Company: ${company}
-// Role: ${role}
-// Experience: ${level}
+    // Company: ${company}
+    // Role: ${role}
+    // Experience: ${level}
 
-// Give:
-// 1. Technical Questions
-// 2. HR Questions
-// 3. Behavioral Questions
+    // Give:
+    // 1. Technical Questions
+    // 2. HR Questions
+    // 3. Behavioral Questions
 
-// Format in markdown.
-// `;
+    // Format in markdown.
+    // `;
 
-const prompt = `
+    const prompt = `
 Return ONLY valid JSON.
 
 {
@@ -62,36 +62,34 @@ Experience: ${level}
       .trim();
 
     return JSON.parse(cleanText);
-
-
   } catch (error) {
     console.log("Gemini Error:", error.message);
 
-    return `
-# Technical Questions
+    return {
+      technical: [
+        "Explain the Node.js Event Loop.",
+        "What is JWT authentication?",
+        "Difference between SQL and MongoDB?",
+        "What is middleware in Express?",
+        "Explain REST APIs.",
+      ],
 
-1. Explain the Node.js Event Loop.
-2. What is JWT authentication?
-3. Difference between SQL and MongoDB?
-4. What is middleware in Express?
-5. Explain REST APIs.
+      hr: [
+        "Tell me about yourself.",
+        `Why do you want to join ${company}?`,
+        "What are your strengths and weaknesses?",
+        "Where do you see yourself in 5 years?",
+        "Why should we hire you?",
+      ],
 
-# HR Questions
-
-1. Tell me about yourself.
-2. Why do you want to join ${company}?
-3. What are your strengths and weaknesses?
-4. Where do you see yourself in 5 years?
-5. Why should we hire you?
-
-# Behavioral Questions
-
-1. Describe a challenging project.
-2. Tell me about a time you worked in a team.
-3. How do you handle deadlines?
-4. How do you deal with criticism?
-5. Describe a problem you solved creatively.
-`;
+      behavioral: [
+        "Describe a challenging project.",
+        "Tell me about a time you worked in a team.",
+        "How do you handle deadlines?",
+        "How do you deal with criticism?",
+        "Describe a problem you solved creatively.",
+      ],
+    };
   }
 };
 
