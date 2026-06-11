@@ -24,12 +24,6 @@ app.use(
   }),
 );
 
-// app.use(
-//   cors({
-//     origin: [process.env.CLIENT_URL, "http://localhost:5173"],
-//     credentials: true,
-//   }),
-// );
 
 
 app.set("trust proxy", 1);
@@ -46,6 +40,7 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/jobs", require("./routes/jobRoutes"));
 app.use("/api/stats", require("./routes/statsRoutes"));
 app.use("/api/ai", require("./routes/aiRoutes"));
+app.use("/api/resume", require("./routes/resumeRoutes"));
 
 app.get("/", (req, res) => {
   res.send("API Running");
