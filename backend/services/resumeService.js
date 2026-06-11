@@ -48,15 +48,16 @@ const extractSkills = async (resumeText) => {
     model: "gemini-2.5-flash",
   });
 
-  const prompt = `
+const prompt = `
 Analyze this resume carefully.
 
 Tasks:
 
-1. Identify the SINGLE most suitable job role.
-2. Extract the TOP 10 most important technical skills.
-3. Prioritize backend, frontend, AI, cloud, database, and programming skills.
-4. Ignore soft skills.
+1. Identify the SINGLE most suitable professional job role.
+2. The role can belong to ANY industry (Technology, Marketing, Finance, HR, Sales, Design, Healthcare, Education, etc.).
+3. Use a standard industry job title.
+4. Extract the TOP 10 most important skills relevant to that role.
+5. Ignore personal details and soft skills.
 
 Return ONLY valid JSON.
 
