@@ -1,5 +1,14 @@
 
 
+// import {
+//   LayoutDashboard,
+//   Briefcase,
+//   KanbanSquare,
+//   BarChart3,
+//   Brain,
+//   Sparkles,
+// } from "lucide-react";
+
 import {
   LayoutDashboard,
   Briefcase,
@@ -7,6 +16,7 @@ import {
   BarChart3,
   Brain,
   Sparkles,
+  FileSearch,
 } from "lucide-react";
 
 import { NavLink } from "react-router-dom";
@@ -200,6 +210,10 @@ const Sidebar = () => {
           <NavLink to="/ai" className={navClass}>
             <Brain size={20} />
             AI Assistant
+          </NavLink>
+          <NavLink to="/resume-matcher" className={navClass}>
+            <Sparkles size={20} />
+            AI Job Matcher
           </NavLink>
         </div>
       </nav>

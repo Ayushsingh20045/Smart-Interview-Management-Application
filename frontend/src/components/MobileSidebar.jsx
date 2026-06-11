@@ -8,6 +8,7 @@ import {
   Brain,
   LogOut,
   X,
+  Sparkles
 } from "lucide-react";
 
 import { NavLink } from "react-router-dom";
@@ -218,6 +219,10 @@ const MobileSidebar = ({ open, setOpen }) => {
           <NavLink to="/ai" onClick={() => setOpen(false)} className={navClass}>
             <Brain size={20} />
             AI Assistant
+          </NavLink>
+          <NavLink to="/resume-matcher" className={navClass}>
+            <Sparkles size={20} />
+            AI Job Matcher
           </NavLink>
         </nav>
 

@@ -5,7 +5,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Jobs from "./pages/Jobs";
 import ProtectedRoute from "./routes/ProtectedRoute";
-
+import ResumeMatcher from "./pages/ResumeMatcher";
 import useAuthStore from "./store/authStore";
 
 import Kanban from "./pages/Kanban";
@@ -59,6 +59,14 @@ function App() {
           element={
             <ProtectedRoute>
               <AIAssistant />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/resume-matcher"
+          element={
+            <ProtectedRoute>
+              <ResumeMatcher />
             </ProtectedRoute>
           }
         />
