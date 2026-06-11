@@ -1,6 +1,16 @@
 # Smart Interview Management Application
 
-A full-stack MERN application that helps job seekers manage applications, track interview progress, organize opportunities through a Kanban board, and generate AI-powered interview questions.
+A full-stack AI-powered career management platform built with the MERN Stack that helps job seekers manage applications, track interview progress, prepare for interviews, analyze resumes, and discover matching job opportunities.
+
+---
+
+## Live Demo
+
+Frontend:
+https://smart-interview-management-applicat.vercel.app/
+
+GitHub Repository:
+https://github.com/Ayushsingh20045/Smart-Interview-Management-Application
 
 ---
 
@@ -14,6 +24,9 @@ A full-stack MERN application that helps job seekers manage applications, track 
 * Secure HTTP-Only Cookies
 * Protected Routes
 * Persistent Authentication on Refresh
+* Secure Logout Functionality
+
+---
 
 ### Job Management
 
@@ -21,32 +34,47 @@ A full-stack MERN application that helps job seekers manage applications, track 
 * Update Job Details
 * Delete Applications
 * Search Jobs
-* Filter by Status
-* Track Salary, Location, Notes, and Company Details
+* Filter Jobs by Status
+* Track Company, Role, Salary, Location, and Notes
+* Real-Time State Updates with Zustand
+
+---
 
 ### Kanban Board
 
 * Drag and Drop Job Applications
-* Status Management:
-
-  * Applied
-  * Interview
-  * Offer
-  * Rejected
-* Mobile Responsive Design
+* Mobile & Desktop Responsive
 * Touch Support for Mobile Devices
+* Visual Job Pipeline Management
+
+Application Stages:
+
+* Applied
+* Interview
+* Offer
+* Rejected
+
+---
 
 ### Dashboard Analytics
+
+Interactive analytics powered by Recharts.
+
+Includes:
 
 * Total Applications
 * Interview Count
 * Offer Count
 * Rejection Count
-* Visual Progress Tracking
+* Response Rate Tracking
+* Visual Charts and Statistics
+* Application Progress Overview
+
+---
 
 ### AI Interview Assistant
 
-Generate role-specific interview questions using Google's Gemini AI.
+Generate interview questions using Google Gemini AI.
 
 Question Categories:
 
@@ -54,7 +82,40 @@ Question Categories:
 * HR Questions
 * Behavioral Questions
 
-Fallback questions are automatically generated if AI service is unavailable.
+Features:
+
+* Role-Specific Questions
+* Company-Based Question Generation
+* Experience-Level Customization
+* Automatic Fallback Questions
+
+---
+
+### AI Resume Matcher
+
+Upload a resume and discover matching job opportunities using AI.
+
+Features:
+
+* Resume Upload (PDF)
+* Resume Text Extraction
+* AI Skill Extraction using Gemini AI
+* AI Role Detection
+* Real-Time Job Search using Remotive API
+* Skill-Based Job Matching
+* Match Percentage Calculation
+* Direct Apply Links
+* Responsive User Interface
+
+Workflow:
+
+Resume Upload
+→ PDF Parsing
+→ Skill Extraction
+→ Role Detection
+→ Job Search
+→ Match Calculation
+→ Recommended Jobs
 
 ---
 
@@ -69,6 +130,8 @@ Fallback questions are automatically generated if AI service is unavailable.
 * Axios
 * DnD Kit
 * Lucide React
+* Recharts
+* React Hot Toast
 
 ### Backend
 
@@ -78,35 +141,45 @@ Fallback questions are automatically generated if AI service is unavailable.
 * Mongoose
 * JWT Authentication
 * Cookie Parser
-* Gemini AI API
+* Multer
+* PDF Parse
+* Google Gemini AI API
+* Remotive API
+
+### Database
+
+* MongoDB Atlas
 
 ### Deployment
 
 * Frontend: Vercel
 * Backend: Render
-* Database: MongoDB Atlas
 
 ---
 
 ## Project Structure
 
+```
 frontend/
 ├── src/
-│ ├── components/
-│ ├── pages/
-│ ├── layouts/
-│ ├── services/
-│ ├── store/
-│ └── utils/
+│   ├── components/
+│   ├── pages/
+│   ├── layouts/
+│   ├── services/
+│   ├── store/
+│   ├── hooks/
+│   └── utils/
 
 backend/
+├── config/
 ├── controller/
 ├── middleware/
 ├── models/
 ├── routes/
 ├── services/
-├── config/
+├── uploads/
 └── utils/
+```
 
 ---
 
@@ -132,14 +205,16 @@ CLIENT_URL=http://localhost:5173
 VITE_API_URL=http://localhost:5000/api
 ```
 
+---
+
 ## Installation
 
 ### Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Ayushsingh20045/Smart-Interview-Management-Application.git
 
-cd smart-interview-management-application
+cd Smart-Interview-Management-Application
 ```
 
 ### Backend Setup
@@ -162,6 +237,8 @@ npm install
 npm run dev
 ```
 
+---
+
 ## API Routes
 
 ### Authentication
@@ -176,6 +253,8 @@ POST /api/auth/logout
 GET /api/auth/me
 ```
 
+---
+
 ### Jobs
 
 ```http
@@ -188,36 +267,77 @@ PUT /api/jobs/:id
 DELETE /api/jobs/:id
 ```
 
+---
+
 ### Statistics
 
 ```http
 GET /api/stats
 ```
 
-### AI
+---
+
+### AI Assistant
 
 ```http
 POST /api/ai/questions
 ```
 
+---
+
+### Resume Matcher
+
+```http
+POST /api/resume/upload
+```
+
+---
+
 ## Security Features
 
 * Password Hashing using bcryptjs
 * JWT-Based Authentication
-* HTTP-Only Cookies
+* Secure HTTP-Only Cookies
 * Protected Backend Routes
 * CORS Configuration
+* Authentication Middleware
 * Input Validation
+
+---
+
+## Learning Outcomes
+
+Through this project I gained practical experience with:
+
+* Full Stack MERN Development
+* Authentication & Authorization
+* State Management with Zustand
+* Drag-and-Drop Interfaces
+* REST API Design
+* MongoDB Data Modeling
+* AI Integration using Gemini API
+* File Upload Handling
+* PDF Processing
+* Third-Party API Integration
+* Analytics Dashboard Development
+* Production Deployment with Vercel & Render
+
+---
 
 ## Future Improvements
 
-* Resume Upload
-* Email Notifications
+* Resume Score Analysis
+* AI Skill Gap Detection
 * Interview Scheduling
-* Company Reviews
-* Job Recommendation Engine
+* Email Notifications
 * Calendar Integration
-* AI Resume Analyzer
+* Real-Time Notifications
+* Docker Support
+* CI/CD Pipeline
+* Multi-Resume Support
+* Company Reviews & Ratings
+
+---
 
 ## Author
 
@@ -231,7 +351,12 @@ LinkedIn:
 https://www.linkedin.com/in/ayush-singh-b15b39263/
 
 GitHub:
-https://github.com/dashboard
+https://github.com/Ayushsingh20045
+
+Portfolio:
+https://my-portfolio-m698.vercel.app/
+
+---
 
 ## License
 
